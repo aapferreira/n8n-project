@@ -1,0 +1,10 @@
+# Dados locais do Postgres e n8n (não versionar no Git)
+data/postgres/
+data/n8n/
+
+# Variáveis de ambiente com senhas e chaves de criptografia
+.env
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
