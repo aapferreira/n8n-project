@@ -6,8 +6,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -656,
-        -240
+        -1664,
+        -288
       ],
       "id": "738bd146-b2c5-4151-98d4-520e48d7d1fe",
       "name": "When clicking ‘Execute workflow’"
@@ -22,11 +22,15 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -432,
-        -240
+        -1280,
+        -464
       ],
       "id": "0ef77c3b-b83e-404d-95d1-ffe1d2a1c906",
-      "name": "HTTP Request"
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -55,8 +59,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -208,
-        -240
+        -1056,
+        -464
       ],
       "id": "a9d480ac-a919-488b-9910-21074f475d65",
       "name": "If"
@@ -78,8 +82,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        16,
-        -312
+        -832,
+        -560
       ],
       "id": "b454c8d3-45bb-4f16-b41b-16aaf4c93b5e",
       "name": "Edit Fields"
@@ -101,11 +105,170 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        16,
-        -144
+        -832,
+        -368
       ],
       "id": "49b8ca5a-8c3a-4f4a-a840-ab518545fe02",
       "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "=mensagem",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -608,
+        -560
+      ],
+      "id": "559fe230-be15-45e9-a141-aa8347f3beed",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/files/file.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -384,
+        -560
+      ],
+      "id": "fd886065-7307-4d53-8868-b09ef37b25fa",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "url": "https://hinos-igreja.streamlit.app/healthz",
+        "options": {
+          "timeout": 50000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -1280,
+        -48
+      ],
+      "id": "0053cc0c-0e1e-491e-9e29-fb8899ef8974",
+      "name": "HTTP Request1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "02916c04-e3b2-4b02-a675-7500af6f0eda",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "ok",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1056,
+        -48
+      ],
+      "id": "3c6630b8-d331-4adb-a6e6-c47fb5c3f6b8",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "46926f21-962b-4dc9-bcf6-b1bc022373d2",
+              "name": "mensagem",
+              "value": "Executou com sucesso!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -832,
+        -144
+      ],
+      "id": "81c0626d-394d-4ff1-a9cf-cd3eb572d07c",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1bed699d-0ace-4fa3-b40a-972b2f17b16c",
+              "name": "mensagem",
+              "value": "Falha ao executar!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -832,
+        48
+      ],
+      "id": "504b712c-e9b7-434d-879e-41a42767b233",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "=mensagem",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -608,
+        -144
+      ],
+      "id": "b41fe98f-10ee-4bb7-bff0-9e3eeafd8871",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/files/file.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -384,
+        -144
+      ],
+      "id": "ccfcbfd7-1b04-44b7-91e9-3f2013d00b55",
+      "name": "Read/Write Files from Disk1"
     }
   ],
   "pinData": {},
@@ -115,6 +278,11 @@
         [
           {
             "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
             "type": "main",
             "index": 0
           }
@@ -149,6 +317,79 @@
           }
         ]
       ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -156,7 +397,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "7e0fb90c-602f-4bf8-80fd-717e3e5887d1",
+  "versionId": "53a3d3d0-2503-43c8-9183-a64aaa4a1294",
   "meta": {
     "instanceId": "5bdfbf8efdbfd2a4c40cd7c413bd6b3376cbd6b260472226a0c83bf4613d6f0a"
   },

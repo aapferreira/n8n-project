@@ -1,6 +1,7 @@
 # Dados locais do Postgres e n8n (não versionar no Git)
 data/postgres/
 data/n8n/
+data/files/
 
 # Variáveis de ambiente com senhas e chaves de criptografia
 .env
