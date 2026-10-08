@@ -2,28 +2,19 @@
   "name": "My workflow",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -1664,
-        -288
-      ],
-      "id": "738bd146-b2c5-4151-98d4-520e48d7d1fe",
-      "name": "When clicking ‘Execute workflow’"
-    },
-    {
       "parameters": {
-        "url": "https://gerador-html-python.onrender.com/healthz",
-        "options": {
-          "timeout": 50000
-        }
+        "method": "POST",
+        "url": "https://gerador-html-python.onrender.com/consulta",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"config\": [\n    {\n      \"templateOptions\": { \"title\": \"Saudação\" },\n      \"fieldGroup\": [\n        {\n          \"key\": \"mensagem\",\n          \"type\": \"input\",\n          \"templateOptions\": { \"label\": \"Mensagem\" }\n        }\n      ]\n    }\n  ],\n  \"last_version\": {\n    \"mensagem\": \"Olá mundo\"\n  },\n  \"meta\": {\n    \"titulo\": \"Olá mundo\",\n    \"status\": \"Ativo\"\n  }\n}",
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
         -1280,
-        -464
+        -352
       ],
       "id": "0ef77c3b-b83e-404d-95d1-ffe1d2a1c906",
       "name": "HTTP Request",
@@ -59,8 +50,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1056,
-        -464
+        -720,
+        -352
       ],
       "id": "a9d480ac-a919-488b-9910-21074f475d65",
       "name": "If"
@@ -82,7 +73,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -832,
+        -480,
         -560
       ],
       "id": "b454c8d3-45bb-4f16-b41b-16aaf4c93b5e",
@@ -105,8 +96,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -832,
-        -368
+        -480,
+        -256
       ],
       "id": "49b8ca5a-8c3a-4f4a-a840-ab518545fe02",
       "name": "Edit Fields1"
@@ -120,7 +111,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -608,
+        -256,
         -560
       ],
       "id": "559fe230-be15-45e9-a141-aa8347f3beed",
@@ -135,7 +126,7 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -384,
+        -32,
         -560
       ],
       "id": "fd886065-7307-4d53-8868-b09ef37b25fa",
@@ -143,16 +134,18 @@
     },
     {
       "parameters": {
-        "url": "https://hinos-igreja.streamlit.app/healthz",
+        "url": "https://hinos-igreja.streamlit.app/?embed=true",
         "options": {
-          "timeout": 50000
+          "redirect": {
+            "redirect": {}
+          }
         }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
         -1280,
-        -48
+        64
       ],
       "id": "0053cc0c-0e1e-491e-9e29-fb8899ef8974",
       "name": "HTTP Request1",
@@ -188,8 +181,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1056,
-        -48
+        -704,
+        64
       ],
       "id": "3c6630b8-d331-4adb-a6e6-c47fb5c3f6b8",
       "name": "If1"
@@ -211,8 +204,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -832,
-        -144
+        -480,
+        -32
       ],
       "id": "81c0626d-394d-4ff1-a9cf-cd3eb572d07c",
       "name": "Edit Fields2"
@@ -234,8 +227,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -832,
-        48
+        -480,
+        160
       ],
       "id": "504b712c-e9b7-434d-879e-41a42767b233",
       "name": "Edit Fields3"
@@ -249,8 +242,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -608,
-        -144
+        -256,
+        -32
       ],
       "id": "b41fe98f-10ee-4bb7-bff0-9e3eeafd8871",
       "name": "Convert to File1"
@@ -264,36 +257,285 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -384,
-        -144
+        -32,
+        -32
       ],
       "id": "ccfcbfd7-1b04-44b7-91e9-3f2013d00b55",
       "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1088,
+        -352
+      ],
+      "id": "e39d245f-bd67-4684-8883-0c749d34b9ff",
+      "name": "Wait",
+      "webhookId": "73ea5690-dd2b-49fe-84cf-a85b37e224fe"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1088,
+        64
+      ],
+      "id": "def1992a-acd6-42df-94a2-8dbfc9517de3",
+      "name": "Wait1",
+      "webhookId": "73ea5690-dd2b-49fe-84cf-a85b37e224fe"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gerador-html-python.onrender.com/consulta",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"config\": [\n    {\n      \"templateOptions\": { \"title\": \"Saudação\" },\n      \"fieldGroup\": [\n        {\n          \"key\": \"mensagem\",\n          \"type\": \"input\",\n          \"templateOptions\": { \"label\": \"Mensagem\" }\n        }\n      ]\n    }\n  ],\n  \"last_version\": {\n    \"mensagem\": \"Olá mundo\"\n  },\n  \"meta\": {\n    \"titulo\": \"Olá mundo\",\n    \"status\": \"Ativo\"\n  }\n}",
+        "options": {
+          "timeout": 50000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -896,
+        -352
+      ],
+      "id": "515a5883-c8a9-407c-b609-156a88f3725c",
+      "name": "HTTP Request2",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://hinos-igreja.streamlit.app/?embed=true",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          },
+          "timeout": 50000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -896,
+        64
+      ],
+      "id": "e5239b6b-5fae-4889-bfb8-292e3b731e7a",
+      "name": "HTTP Request3",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 3
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -1664,
+        -176
+      ],
+      "id": "c9fe722f-f4fc-4f5f-abe1-5f8b4fe618ab",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "url": "https://api-testes-em-python.onrender.com/api/v2/Pagamento/Callback?CodigoPedido=130000",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -1264,
+        480
+      ],
+      "id": "815462bd-6500-4c21-bb77-3f88c094a86c",
+      "name": "HTTP Request4",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "02916c04-e3b2-4b02-a675-7500af6f0eda",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "ok",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -688,
+        480
+      ],
+      "id": "43e73a3f-c488-4ca3-a9c8-423fd14da2a5",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "46926f21-962b-4dc9-bcf6-b1bc022373d2",
+              "name": "mensagem",
+              "value": "Executou com sucesso!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -464,
+        384
+      ],
+      "id": "73ba1aba-7aa0-4bdc-932a-c2e910a2db2c",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1bed699d-0ace-4fa3-b40a-972b2f17b16c",
+              "name": "mensagem",
+              "value": "Falha ao executar!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -464,
+        576
+      ],
+      "id": "492be0a2-8a89-42e6-b04d-deeb4586e2e8",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "=mensagem",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        384
+      ],
+      "id": "b9502ac0-b68b-4f84-9758-3fdbc6b411fd",
+      "name": "Convert to File2"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/files/file.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -16,
+        384
+      ],
+      "id": "f7a4e831-cb66-4d0c-b714-37204a03e2ed",
+      "name": "Read/Write Files from Disk2"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1072,
+        480
+      ],
+      "id": "b84ffd23-c1bc-401f-b786-ebb76fbfa959",
+      "name": "Wait2",
+      "webhookId": "73ea5690-dd2b-49fe-84cf-a85b37e224fe"
+    },
+    {
+      "parameters": {
+        "url": "https://api-testes-em-python.onrender.com/api/v2/Pagamento/Callback?CodigoPedido=130000",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -880,
+        480
+      ],
+      "id": "348dde41-95d9-4e84-b693-c40a9dc5170f",
+      "name": "HTTP Request5",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {},
   "connections": {
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "HTTP Request1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "HTTP Request": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -344,7 +586,7 @@
       "main": [
         [
           {
-            "node": "If1",
+            "node": "Wait1",
             "type": "main",
             "index": 0
           }
@@ -390,6 +632,144 @@
           }
         ]
       ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Convert to File2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File2": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -397,7 +777,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "53a3d3d0-2503-43c8-9183-a64aaa4a1294",
+  "versionId": "4900aede-5b7f-4376-94d1-1094f9d645dd",
   "meta": {
     "instanceId": "5bdfbf8efdbfd2a4c40cd7c413bd6b3376cbd6b260472226a0c83bf4613d6f0a"
   },
