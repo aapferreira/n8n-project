@@ -13,8 +13,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -1280,
-        -352
+        -1312,
+        -336
       ],
       "id": "0ef77c3b-b83e-404d-95d1-ffe1d2a1c906",
       "name": "HTTP Request",
@@ -35,11 +35,11 @@
           "conditions": [
             {
               "id": "02916c04-e3b2-4b02-a675-7500af6f0eda",
-              "leftValue": "={{ $json.status }}",
-              "rightValue": "ok",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "<title>Olá mundo — Consulta</title>",
               "operator": {
                 "type": "string",
-                "operation": "equals"
+                "operation": "contains"
               }
             }
           ],
@@ -50,8 +50,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -720,
-        -352
+        -752,
+        -336
       ],
       "id": "a9d480ac-a919-488b-9910-21074f475d65",
       "name": "If"
@@ -73,8 +73,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -480,
-        -560
+        -512,
+        -432
       ],
       "id": "b454c8d3-45bb-4f16-b41b-16aaf4c93b5e",
       "name": "Edit Fields"
@@ -96,8 +96,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -480,
-        -256
+        -512,
+        -240
       ],
       "id": "49b8ca5a-8c3a-4f4a-a840-ab518545fe02",
       "name": "Edit Fields1"
@@ -111,8 +111,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -256,
-        -560
+        -288,
+        -432
       ],
       "id": "559fe230-be15-45e9-a141-aa8347f3beed",
       "name": "Convert to File"
@@ -120,14 +120,14 @@
     {
       "parameters": {
         "operation": "write",
-        "fileName": "/files/file.txt",
+        "fileName": "=/files/{{ $now.toFormat('yyyy-MM-dd-HHmmss') }}_gerador-html-python-file.txt",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -32,
-        -560
+        -64,
+        -432
       ],
       "id": "fd886065-7307-4d53-8868-b09ef37b25fa",
       "name": "Read/Write Files from Disk"
@@ -144,7 +144,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -1280,
+        -1296,
         64
       ],
       "id": "0053cc0c-0e1e-491e-9e29-fb8899ef8974",
@@ -166,11 +166,11 @@
           "conditions": [
             {
               "id": "02916c04-e3b2-4b02-a675-7500af6f0eda",
-              "leftValue": "={{ $json.status }}",
-              "rightValue": "ok",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "<!doctype html>",
               "operator": {
                 "type": "string",
-                "operation": "equals"
+                "operation": "contains"
               }
             }
           ],
@@ -181,7 +181,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -704,
+        -720,
         64
       ],
       "id": "3c6630b8-d331-4adb-a6e6-c47fb5c3f6b8",
@@ -204,7 +204,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -480,
+        -496,
         -32
       ],
       "id": "81c0626d-394d-4ff1-a9cf-cd3eb572d07c",
@@ -227,7 +227,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -480,
+        -496,
         160
       ],
       "id": "504b712c-e9b7-434d-879e-41a42767b233",
@@ -242,7 +242,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -256,
+        -272,
         -32
       ],
       "id": "b41fe98f-10ee-4bb7-bff0-9e3eeafd8871",
@@ -251,13 +251,13 @@
     {
       "parameters": {
         "operation": "write",
-        "fileName": "/files/file.txt",
+        "fileName": "=/files/{{ $now.toFormat('yyyy-MM-dd-HHmmss') }}_hinos-igreja-file.txt",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -32,
+        -48,
         -32
       ],
       "id": "ccfcbfd7-1b04-44b7-91e9-3f2013d00b55",
@@ -271,8 +271,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -1088,
-        -352
+        -1120,
+        -336
       ],
       "id": "e39d245f-bd67-4684-8883-0c749d34b9ff",
       "name": "Wait",
@@ -286,7 +286,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -1088,
+        -1104,
         64
       ],
       "id": "def1992a-acd6-42df-94a2-8dbfc9517de3",
@@ -307,8 +307,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -896,
-        -352
+        -928,
+        -336
       ],
       "id": "515a5883-c8a9-407c-b609-156a88f3725c",
       "name": "HTTP Request2",
@@ -330,7 +330,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -896,
+        -912,
         64
       ],
       "id": "e5239b6b-5fae-4889-bfb8-292e3b731e7a",
@@ -355,7 +355,7 @@
       "typeVersion": 1.4,
       "position": [
         -1664,
-        -176
+        64
       ],
       "id": "c9fe722f-f4fc-4f5f-abe1-5f8b4fe618ab",
       "name": "Schedule Trigger1"
@@ -372,8 +372,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -1264,
-        480
+        -1296,
+        448
       ],
       "id": "815462bd-6500-4c21-bb77-3f88c094a86c",
       "name": "HTTP Request4",
@@ -394,11 +394,11 @@
           "conditions": [
             {
               "id": "02916c04-e3b2-4b02-a675-7500af6f0eda",
-              "leftValue": "={{ $json.status }}",
-              "rightValue": "ok",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "Retorno Com Sucesso",
               "operator": {
                 "type": "string",
-                "operation": "equals"
+                "operation": "contains"
               }
             }
           ],
@@ -409,8 +409,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -688,
-        480
+        -720,
+        448
       ],
       "id": "43e73a3f-c488-4ca3-a9c8-423fd14da2a5",
       "name": "If2"
@@ -432,8 +432,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -464,
-        384
+        -496,
+        352
       ],
       "id": "73ba1aba-7aa0-4bdc-932a-c2e910a2db2c",
       "name": "Edit Fields4"
@@ -455,8 +455,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -464,
-        576
+        -496,
+        544
       ],
       "id": "492be0a2-8a89-42e6-b04d-deeb4586e2e8",
       "name": "Edit Fields5"
@@ -470,26 +470,11 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -240,
-        384
+        -272,
+        352
       ],
       "id": "b9502ac0-b68b-4f84-9758-3fdbc6b411fd",
       "name": "Convert to File2"
-    },
-    {
-      "parameters": {
-        "operation": "write",
-        "fileName": "/files/file.txt",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1.1,
-      "position": [
-        -16,
-        384
-      ],
-      "id": "f7a4e831-cb66-4d0c-b714-37204a03e2ed",
-      "name": "Read/Write Files from Disk2"
     },
     {
       "parameters": {
@@ -499,8 +484,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -1072,
-        480
+        -1104,
+        448
       ],
       "id": "b84ffd23-c1bc-401f-b786-ebb76fbfa959",
       "name": "Wait2",
@@ -518,8 +503,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        -880,
-        480
+        -912,
+        448
       ],
       "id": "348dde41-95d9-4e84-b693-c40a9dc5170f",
       "name": "HTTP Request5",
@@ -527,6 +512,21 @@
       "maxTries": 5,
       "waitBetweenTries": 5000,
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/files/{{ $now.toFormat('yyyy-MM-dd-HHmmss') }}_gerador-html-python-file.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -48,
+        352
+      ],
+      "id": "f7a4e831-cb66-4d0c-b714-37204a03e2ed",
+      "name": "Read/Write Files from Disk2"
     }
   ],
   "pinData": {},
@@ -777,7 +777,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "4900aede-5b7f-4376-94d1-1094f9d645dd",
+  "versionId": "5ca33632-9cce-4426-9b15-5cc3370e8682",
   "meta": {
     "instanceId": "5bdfbf8efdbfd2a4c40cd7c413bd6b3376cbd6b260472226a0c83bf4613d6f0a"
   },
